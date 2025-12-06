@@ -5,6 +5,9 @@ import com.olvealmacen.tienda.dao.CompraDAO;
 import com.olvealmacen.tienda.modelo.Compra;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Service
 public class CompraService {
 
