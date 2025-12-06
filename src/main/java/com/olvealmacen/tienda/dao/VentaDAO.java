@@ -30,13 +30,13 @@ public class VentaDAO {
     public List<Venta> listar() {
         String sql = "SELECT v.id, v.fecha, v.id_cliente, c.nombre AS nombre_cliente, " +
                      "v.metodo_pago, v.total " +
-                     "FROM ventas v INNER JOIN clientes c ON v.id_cliente = c.id";
+                     "FROM venta v INNER JOIN cliente c ON v.id_cliente = c.id";
         return jdbcTemplate.query(sql, rowMapper);
     }
 
     // Agregar una venta
     public boolean agregar(Venta v) {
-        String sql = "INSERT INTO ventas (fecha, id_cliente, metodo_pago, total) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO venta (fecha, id_cliente, metodo_pago, total) VALUES (?, ?, ?, ?)";
         return jdbcTemplate.update(sql,
                 v.getFecha(),
                 v.getIdCliente(),
@@ -46,7 +46,7 @@ public class VentaDAO {
 
     // Actualizar una venta
     public boolean actualizar(Venta v) {
-        String sql = "UPDATE ventas SET fecha=?, id_cliente=?, metodo_pago=?, total=? WHERE id=?";
+        String sql = "UPDATE venta SET fecha=?, id_cliente=?, metodo_pago=?, total=? WHERE id=?";
         return jdbcTemplate.update(sql,
                 v.getFecha(),
                 v.getIdCliente(),
@@ -57,14 +57,14 @@ public class VentaDAO {
 
     // Eliminar una venta
     public boolean eliminar(int id) {
-        String sql = "DELETE FROM ventas WHERE id=?";
+        String sql = "DELETE FROM venta WHERE id=?";
         return jdbcTemplate.update(sql, id) > 0;
     }
 
     // Obtener venta por ID
     public Venta obtenerPorId(int id) {
         String sql = "SELECT v.id, v.fecha, v.id_cliente, c.nombre AS nombre_cliente, v.metodo_pago, v.total " +
-                     "FROM ventas v INNER JOIN clientes c ON v.id_cliente = c.id WHERE v.id=?";
+                     "FROM venta v INNER JOIN cliente c ON v.id_cliente = c.id WHERE v.id=?";
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, rowMapper);
     }
 }
