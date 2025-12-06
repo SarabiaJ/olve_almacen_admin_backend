@@ -20,7 +20,7 @@ public class CategoriaControlador {
         this.gson = new Gson();
     }
 
-    @GetMapping("/listar")
+    @GetMapping({"", "/listar"})
     public String listarCategorias() {
         List<Categoria> lista = categoriaService.obtenerCategorias();
         return gson.toJson(lista);
