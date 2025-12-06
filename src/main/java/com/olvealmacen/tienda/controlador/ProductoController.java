@@ -7,7 +7,7 @@ import com.olvealmacen.tienda.services.ProductoService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/productos")
+@RequestMapping("/api/productos")
 public class ProductoController {
 
     private final ProductoService service;
