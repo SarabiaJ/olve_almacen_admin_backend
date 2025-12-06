@@ -18,8 +18,8 @@ public class CategoriaDAO {
 
     private final RowMapper<Categoria> rowMapper = (rs, rowNum) ->
             new Categoria(
-                    rs.getInt("id"),
-                    rs.getString("nombre")
+                    rs.getInt("id_categoria"),
+                    rs.getString("nombre_categoria")
             );
 
     // Obtener todas las categorías
@@ -30,14 +30,14 @@ public class CategoriaDAO {
 
     // Obtener una sola categoría
     public Categoria obtenerCategoriaPorId(int id) {
-        String sql = "SELECT * FROM categoria WHERE id = ?";
+        String sql = "SELECT * FROM categoria WHERE id_categoria = ?";
         List<Categoria> lista = jdbcTemplate.query(sql, rowMapper, id);
         return lista.isEmpty() ? null : lista.get(0);
     }
 
     // Crear categoría
     public boolean agregarCategoria(Categoria categoria) {
-        String sql = "INSERT INTO categoria (id, nombre) VALUES (?, ?)";
+        String sql = "INSERT INTO categoria (id_categoria, nombre_categoria) VALUES (?, ?)";
         return jdbcTemplate.update(sql,
                 categoria.getIdCategoria(),
                 categoria.getNombreCategoria()) > 0;
@@ -45,7 +45,7 @@ public class CategoriaDAO {
 
     // Actualizar categoría
     public boolean actualizarCategoria(Categoria categoria) {
-        String sql = "UPDATE categoria SET nombre=? WHERE id=?";
+        String sql = "UPDATE categoria SET nombre_categoria = ? WHERE id_categoria = ?";
         return jdbcTemplate.update(sql,
                 categoria.getNombreCategoria(),
                 categoria.getIdCategoria()) > 0;
@@ -53,7 +53,7 @@ public class CategoriaDAO {
 
     // Eliminar categoría
     public boolean eliminarCategoria(int id) {
-        String sql = "DELETE FROM categoria WHERE id=?";
+        String sql = "DELETE FROM categoria WHERE id_categoria = ?";
         return jdbcTemplate.update(sql, id) > 0;
     }
 }
