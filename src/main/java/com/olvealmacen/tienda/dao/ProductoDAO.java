@@ -34,7 +34,7 @@ public class ProductoDAO {
         String sql = "SELECT p.id, p.nombre, p.descripcion, p.imagen, p.precio, p.stock, " +
                      "c.id AS idCategoria, c.nombre AS nombreCategoria " +
                      "FROM producto p " +
-                     "INNER JOIN `categoría` c ON p.id_categoria = c.id";
+                     "INNER JOIN categoria c ON p.id_categoria = c.id";
         return jdbcTemplate.query(sql, rowMapper);
     }
 

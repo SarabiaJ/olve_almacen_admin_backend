@@ -24,20 +24,20 @@ public class CategoriaDAO {
 
     // Obtener todas las categorías
     public List<Categoria> obtenerCategorias() {
-        String sql = "SELECT * FROM `categoria`";
+        String sql = "SELECT * FROM categoria";
         return jdbcTemplate.query(sql, rowMapper);
     }
 
     // Obtener una sola categoría
     public Categoria obtenerCategoriaPorId(int id) {
-        String sql = "SELECT * FROM `categoria` WHERE id = ?";
+        String sql = "SELECT * FROM categoria WHERE id = ?";
         List<Categoria> lista = jdbcTemplate.query(sql, rowMapper, id);
         return lista.isEmpty() ? null : lista.get(0);
     }
 
     // Crear categoría
     public boolean agregarCategoria(Categoria categoria) {
-        String sql = "INSERT INTO `categoria` (id, nombre) VALUES (?, ?)";
+        String sql = "INSERT INTO categoria (id, nombre) VALUES (?, ?)";
         return jdbcTemplate.update(sql,
                 categoria.getIdCategoria(),
                 categoria.getNombreCategoria()) > 0;
@@ -45,7 +45,7 @@ public class CategoriaDAO {
 
     // Actualizar categoría
     public boolean actualizarCategoria(Categoria categoria) {
-        String sql = "UPDATE `categoria` SET nombre=? WHERE id=?";
+        String sql = "UPDATE categoria SET nombre=? WHERE id=?";
         return jdbcTemplate.update(sql,
                 categoria.getNombreCategoria(),
                 categoria.getIdCategoria()) > 0;
@@ -53,7 +53,7 @@ public class CategoriaDAO {
 
     // Eliminar categoría
     public boolean eliminarCategoria(int id) {
-        String sql = "DELETE FROM `categoria` WHERE id=?";
+        String sql = "DELETE FROM categoria WHERE id=?";
         return jdbcTemplate.update(sql, id) > 0;
     }
 }
