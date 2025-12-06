@@ -9,12 +9,11 @@ public class Producto {
     private double precio;
     private int stock;
     private int idCategoria;
-    private String nombreCategoria;
 
     public Producto() {}
 
     public Producto(int id, String nombre, String descripcion, String imagen,
-                    double precio, int stock, int idCategoria, String nombreCategoria) {
+                    double precio, int stock, int idCategoria) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -22,7 +21,6 @@ public class Producto {
         this.precio = precio;
         this.stock = stock;
         this.idCategoria = idCategoria;
-        this.nombreCategoria = nombreCategoria;
     }
 
     // GETTERS Y SETTERS
@@ -46,8 +44,5 @@ public class Producto {
 
     public int getIdCategoria() { return idCategoria; }
     public void setIdCategoria(int idCategoria) { this.idCategoria = idCategoria; }
-
-    public String getNombreCategoria() { return nombreCategoria; }
-    public void setNombreCategoria(String nombreCategoria) { this.nombreCategoria = nombreCategoria; }
 
 }
