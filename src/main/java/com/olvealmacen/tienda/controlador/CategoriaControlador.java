@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "https://sarabiaj.github.io")
 @RestController
 @RequestMapping("/api/categoria")
 public class CategoriaControlador {
