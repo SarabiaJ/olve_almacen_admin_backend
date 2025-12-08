@@ -34,10 +34,9 @@ public class ClienteController {
         return "{\"success\": " + ok + "}";
     }
 
-    @PutMapping("/{id}")
-    public String actualizar(@PathVariable int id, @RequestBody String body) {
+    @PutMapping
+    public String actualizar(@RequestBody String body) {
         Cliente c = gson.fromJson(body, Cliente.class);
-        c.setIdCliente(id);
         boolean ok = service.actualizarCliente(c);
         return "{\"success\": " + ok + "}";
     }

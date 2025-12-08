@@ -30,9 +30,8 @@ public class ProductoController {
         return "{\"success\": " + ok + "}";
     }
 
-    @PutMapping("/{id}")
-    public String actualizar(@PathVariable int id, @RequestBody Producto p) {
-        p.setId(id);
+    @PutMapping
+    public String actualizar(@RequestBody Producto p) {
         boolean ok = service.actualizar(p);
         return "{\"success\": " + ok + "}";
     }

@@ -31,10 +31,9 @@ public class ProveedorController {
         return "{\"success\": " + ok + "}";
     }
 
-    @PutMapping("/{id}")
-    public String actualizar(@PathVariable int id, @RequestBody String body) {
+    @PutMapping
+    public String actualizar(@RequestBody String body) {
         Proveedor p = gson.fromJson(body, Proveedor.class);
-        p.setId(id);
         boolean ok = service.actualizar(p);
         return "{\"success\": " + ok + "}";
     }

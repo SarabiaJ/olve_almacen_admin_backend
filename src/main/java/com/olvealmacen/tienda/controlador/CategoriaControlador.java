@@ -33,9 +33,8 @@ public class CategoriaControlador {
         return "{\"success\": " + ok + "}";
     }
 
-    @PutMapping("/{id}")
-    public String actualizar(@PathVariable int id, @RequestBody Categoria c) {
-        c.setIdCategoria(id);
+    @PutMapping
+    public String actualizar(@RequestBody Categoria c) {
         boolean ok = categoriaService.actualizarCategoria(c);
         return "{\"success\": " + ok + "}";
     }
