@@ -6,6 +6,7 @@ import com.olvealmacen.tienda.services.ProveedorService;
 
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "https://sarabiaj.github.io")
 @RestController
 @RequestMapping("/api/proveedores")
 public class ProveedorController {

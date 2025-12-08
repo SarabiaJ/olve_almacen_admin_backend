@@ -6,6 +6,7 @@ import com.olvealmacen.tienda.services.ProductoService;
 
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "https://sarabiaj.github.io")
 @RestController
 @RequestMapping("/api/productos")
 public class ProductoController {
