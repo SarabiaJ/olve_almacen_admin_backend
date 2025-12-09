@@ -20,36 +20,47 @@ public class CompraDAO {
             new Compra(
                     rs.getInt("id"),
                     rs.getString("fecha"),
-                    rs.getInt("idProveedor"),
+                    rs.getInt("id_proveedor"), // ✅ CORREGIDO
                     rs.getDouble("total")
             );
 
-    // Listar todas las compras
+    // ================= LISTAR =================
     public List<Compra> listar() {
         String sql = "SELECT * FROM compra";
         return jdbcTemplate.query(sql, rowMapper);
     }
 
-    // Obtener compra por ID
+    // ================= OBTENER POR ID =================
     public Compra obtenerPorId(int id) {
         String sql = "SELECT * FROM compra WHERE id=?";
         List<Compra> lista = jdbcTemplate.query(sql, rowMapper, id);
         return lista.isEmpty() ? null : lista.get(0);
     }
 
-    // Agregar una compra
+    // ================= AGREGAR =================
     public boolean agregar(Compra c) {
-        String sql = "INSERT INTO compra (fecha, idProveedor, total) VALUES (?,?,?)";
-        return jdbcTemplate.update(sql, c.getFecha(), c.getIdProveedor(), c.getTotal()) > 0;
+        String sql = "INSERT INTO compra (fecha, id_proveedor, total) VALUES (?,?,?)";
+        return jdbcTemplate.update(
+                sql,
+                c.getFecha(),
+                c.getIdProveedor(),
+                c.getTotal()
+        ) > 0;
     }
 
-    // Actualizar una compra
+    // ================= ACTUALIZAR =================
     public boolean actualizar(Compra c) {
-        String sql = "UPDATE compra SET fecha=?, idProveedor=?, total=? WHERE id=?";
-        return jdbcTemplate.update(sql, c.getFecha(), c.getIdProveedor(), c.getTotal(), c.getId()) > 0;
+        String sql = "UPDATE compra SET fecha=?, id_proveedor=?, total=? WHERE id=?";
+        return jdbcTemplate.update(
+                sql,
+                c.getFecha(),
+                c.getIdProveedor(),
+                c.getTotal(),
+                c.getId()
+        ) > 0;
     }
 
-    // Eliminar una compra
+    // ================= ELIMINAR =================
     public boolean eliminar(int id) {
         String sql = "DELETE FROM compra WHERE id=?";
         return jdbcTemplate.update(sql, id) > 0;
