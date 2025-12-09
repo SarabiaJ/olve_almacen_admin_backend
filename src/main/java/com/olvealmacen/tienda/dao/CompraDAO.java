@@ -1,12 +1,3 @@
-package com.olvealmacen.tienda.dao;
-
-import com.olvealmacen.tienda.modelo.Compra;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
-
 @Repository
 public class CompraDAO {
 
@@ -18,9 +9,9 @@ public class CompraDAO {
 
     private final RowMapper<Compra> rowMapper = (rs, rowNum) ->
             new Compra(
-                    rs.getInt("id"),
+                    rs.getInt("id_compra"),
                     rs.getString("fecha"),
-                    rs.getInt("id_proveedor"), // ✅ CORREGIDO
+                    rs.getInt("id_proveedor"),
                     rs.getDouble("total")
             );
 
@@ -32,7 +23,7 @@ public class CompraDAO {
 
     // ================= OBTENER POR ID =================
     public Compra obtenerPorId(int id) {
-        String sql = "SELECT * FROM compra WHERE id=?";
+        String sql = "SELECT * FROM compra WHERE id_compra=?";
         List<Compra> lista = jdbcTemplate.query(sql, rowMapper, id);
         return lista.isEmpty() ? null : lista.get(0);
     }
@@ -50,7 +41,7 @@ public class CompraDAO {
 
     // ================= ACTUALIZAR =================
     public boolean actualizar(Compra c) {
-        String sql = "UPDATE compra SET fecha=?, id_proveedor=?, total=? WHERE id=?";
+        String sql = "UPDATE compra SET fecha=?, id_proveedor=?, total=? WHERE id_compra=?";
         return jdbcTemplate.update(
                 sql,
                 c.getFecha(),
@@ -62,7 +53,7 @@ public class CompraDAO {
 
     // ================= ELIMINAR =================
     public boolean eliminar(int id) {
-        String sql = "DELETE FROM compra WHERE id=?";
+        String sql = "DELETE FROM compra WHERE id_compra=?";
         return jdbcTemplate.update(sql, id) > 0;
     }
 }
