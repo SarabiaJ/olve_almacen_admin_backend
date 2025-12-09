@@ -27,4 +27,7 @@ public class Cliente {
 
     public String getCorreo() { return correo; }
     public void setCorreo(String correo) { this.correo = correo; }
+
+    public int getId() { return idCliente; }
+    public void setId(int id) { this.idCliente = id; }
 }
