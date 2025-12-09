@@ -31,7 +31,8 @@ public class ProductoControlador {
     }
 
     @PutMapping("/{id}")
-    public String actualizar(@RequestBody Producto p) {
+    public String actualizar(@PathVariable int id, @RequestBody Producto p) {
+        p.setId(id);
         boolean ok = service.actualizar(p);
         return "{\"success\": " + ok + "}";
     }

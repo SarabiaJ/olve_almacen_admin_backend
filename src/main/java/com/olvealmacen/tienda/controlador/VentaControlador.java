@@ -35,8 +35,9 @@ public class VentaControlador {
     }
 
     @PutMapping("/{id}")
-    public String actualizar(@RequestBody String body) {
+    public String actualizar(@PathVariable int id, @RequestBody String body) {
         Venta v = gson.fromJson(body, Venta.class);
+        v.setId(id);
         boolean ok = ventaService.actualizarVenta(v);
         return "{\"success\": " + ok + "}";
     }
