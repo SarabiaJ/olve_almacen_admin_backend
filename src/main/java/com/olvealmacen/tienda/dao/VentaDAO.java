@@ -23,6 +23,9 @@ public class VentaDAO {
                     rs.getString("fecha"),
                     rs.getInt("id_cliente"),
                     rs.getString("nombre_cliente"),
+                    0,
+                    "",
+                    0,
                     rs.getString("metodo_pago"),
                     rs.getDouble("total")
             );
