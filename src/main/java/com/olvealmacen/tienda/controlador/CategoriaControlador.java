@@ -37,7 +37,7 @@ public class CategoriaControlador {
     public String actualizar(@PathVariable int id, @RequestBody Categoria c) {
         c.setId(id);
         boolean ok = categoriaService.actualizarCategoria(c);
-        return "{\"success\": " + ok + "}";
+        return "{\"success\": " + ok + "}"; 
     }
 
     @DeleteMapping("/{id}")
