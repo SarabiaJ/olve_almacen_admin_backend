@@ -11,12 +11,12 @@ import java.util.List;
 @CrossOrigin(origins = "https://sarabiaj.github.io")
 @RestController
 @RequestMapping("/api/clientes")
-public class ClienteController {
+public class ClienteControlador {
 
     private final ClienteService service;
     private final Gson gson;
 
-    public ClienteController(ClienteService service) {
+    public ClienteControlador(ClienteService service) {
         this.service = service;
         this.gson = new Gson();
     }

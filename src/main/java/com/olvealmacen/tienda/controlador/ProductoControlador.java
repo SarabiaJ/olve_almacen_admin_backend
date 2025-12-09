@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "https://sarabiaj.github.io")
 @RestController
 @RequestMapping("/api/productos")
-public class ProductoController {
+public class ProductoControlador {
 
     private final ProductoService service;
     private final Gson gson;
 
-    public ProductoController(ProductoService service) {
+    public ProductoControlador(ProductoService service) {
         this.service = service;
         this.gson = new Gson();
     }

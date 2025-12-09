@@ -11,12 +11,12 @@ import java.util.List;
 @CrossOrigin(origins = "https://sarabiaj.github.io")
 @RestController
 @RequestMapping("/api/compras")
-public class CompraController {
+public class CompraControlador {
 
     private final CompraService service;
     private final Gson gson;
 
-    public CompraController(CompraService service) {
+    public CompraControlador(CompraService service) {
         this.service = service;
         this.gson = new Gson();
     }
