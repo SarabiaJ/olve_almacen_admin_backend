@@ -18,7 +18,7 @@ public class ProveedorDAO {
 
     private final RowMapper<Proveedor> rowMapper = (rs, rowNum) ->
             new Proveedor(
-                    rs.getInt("id"),
+                    rs.getInt("id_proveedor"),
                     rs.getString("nombre"),
                     rs.getString("telefono"),
                     rs.getString("direccion")
@@ -41,7 +41,7 @@ public class ProveedorDAO {
 
     // Actualizar un proveedor
     public boolean actualizar(Proveedor p) {
-        String sql = "UPDATE proveedor SET nombre=?, telefono=?, direccion=? WHERE id=?";
+        String sql = "UPDATE proveedor SET nombre=?, telefono=?, direccion=? WHERE id_proveedor=?";
         return jdbcTemplate.update(sql,
                 p.getNombre(),
                 p.getTelefono(),
@@ -51,7 +51,7 @@ public class ProveedorDAO {
 
     // Eliminar un proveedor
     public boolean eliminar(int id) {
-        String sql = "DELETE FROM proveedor WHERE id=?";
+        String sql = "DELETE FROM proveedor WHERE id_proveedor=?";
         return jdbcTemplate.update(sql, id) > 0;
     }
 }
