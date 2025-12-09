@@ -30,7 +30,7 @@ public class ProductoControlador {
         return "{\"success\": " + ok + "}";
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public String actualizar(@RequestBody Producto p) {
         boolean ok = service.actualizar(p);
         return "{\"success\": " + ok + "}";

@@ -34,7 +34,7 @@ public class CompraControlador {
         return "{\"success\": " + ok + "}";
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public String actualizar(@RequestBody String body) {
         Compra c = gson.fromJson(body, Compra.class);
         boolean ok = service.actualizarCompra(c);

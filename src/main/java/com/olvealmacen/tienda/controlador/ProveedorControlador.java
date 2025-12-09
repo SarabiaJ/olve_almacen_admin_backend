@@ -31,7 +31,7 @@ public class ProveedorControlador {
         return "{\"success\": " + ok + "}";
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public String actualizar(@RequestBody String body) {
         Proveedor p = gson.fromJson(body, Proveedor.class);
         boolean ok = service.actualizar(p);
