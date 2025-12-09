@@ -37,9 +37,8 @@ public class CategoriaDAO {
 
     // Crear categoría
     public boolean agregarCategoria(Categoria categoria) {
-        String sql = "INSERT INTO categoria (id_categoria, nombre_categoria) VALUES (?, ?)";
+        String sql = "INSERT INTO categoria (nombre_categoria) VALUES (?)";
         return jdbcTemplate.update(sql,
-                categoria.getIdCategoria(),
                 categoria.getNombreCategoria()) > 0;
     }
 
