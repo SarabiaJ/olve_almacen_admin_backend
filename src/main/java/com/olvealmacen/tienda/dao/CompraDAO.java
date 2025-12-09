@@ -11,8 +11,8 @@ public class CompraDAO {
             new Compra(
                     rs.getInt("id_compra"),
                     rs.getString("fecha"),
-                    rs.getInt("id_proveedor"),
-                    rs.getDouble("total")
+                    rs.getDouble("total"),
+                    rs.getInt("id_proveedor")
             );
 
     // ================= LISTAR =================
@@ -34,8 +34,8 @@ public class CompraDAO {
         return jdbcTemplate.update(
                 sql,
                 c.getFecha(),
-                c.getIdProveedor(),
-                c.getTotal()
+                c.getTotal(),
+                c.getIdProveedor()
         ) > 0;
     }
 
@@ -44,10 +44,10 @@ public class CompraDAO {
         String sql = "UPDATE compra SET fecha=?, id_proveedor=?, total=? WHERE id_compra=?";
         return jdbcTemplate.update(
                 sql,
-                c.getFecha(),
-                c.getIdProveedor(),
-                c.getTotal(),
                 c.getId()
+                c.getFecha(),
+                c.getTotal(),
+                c.getIdProveedor()
         ) > 0;
     }
 
