@@ -52,7 +52,7 @@ public class CompraDAO {
         return jdbcTemplate.update(sql,
                 compra.getFecha(),
                 compra.getTotal(),
-                compra.getIdProveedor()
+                compra.getIdProveedor(),
                 compra.getId()) > 0;
     }
 
