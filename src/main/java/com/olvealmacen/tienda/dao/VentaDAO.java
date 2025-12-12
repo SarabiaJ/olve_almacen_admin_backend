@@ -16,76 +16,53 @@ public class VentaDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // ===== RowMapper corregido =====
+    // ===== RowMapper =====
     private final RowMapper<Venta> rowMapper = (rs, rowNum) ->
-            new Venta(
-                    rs.getInt("id_venta"),
-                    rs.getString("fecha"),
-                    rs.getInt("id_cliente"),
-                    rs.getString("nombre_cliente"),
-                    0,
-                    "",
-                    0,
-                    rs.getString("metodo_pago"),
-                    rs.getDouble("total")
-            );
+        new Venta(
+                rs.getInt("id_venta"),
+                rs.getString("fecha"),
+                rs.getDouble("total"),
+                rs.getString("metodo_pago"),
+                rs.getInt("id_cliente")
+        );
 
     // ===== Listar todas las ventas =====
-    public List<Venta> listar() {
-        String sql =
-                "SELECT v.id_venta, v.fecha, v.id_cliente, c.nombre AS nombre_cliente, " +
-                "v.metodo_pago, v.total " +
-                "FROM venta v " +
-                "INNER JOIN cliente c ON v.id_cliente = c.id_cliente";
-
+    public List<Venta> obtenerVentas() {
+        String sql = "SELECT * FROM venta";
         return jdbcTemplate.query(sql, rowMapper);
     }
 
     // ===== Agregar una venta =====
-    public boolean agregar(Venta v) {
-        String sql =
-                "INSERT INTO venta (fecha, id_cliente, metodo_pago, total) VALUES (?, ?, ?, ?)";
-
-        return jdbcTemplate.update(
-                sql,
-                v.getFecha(),
-                v.getIdCliente(),
-                v.getMetodoPago(),
-                v.getTotal()
-        ) > 0;
+    public boolean agregarVenta(Venta venta) {
+        String sql = "INSERT INTO venta (fecha, total, metodo_pago, id_cliente) VALUES (?, ?, ?, ?)";
+        return jdbcTemplate.update(sql,
+                venta.getFecha(),
+                venta.getTotal(),
+                venta.getMetodoPago(),
+                venta.getIdCliente()) > 0;
     }
 
     // ===== Actualizar una venta =====
-    public boolean actualizar(Venta v) {
-        String sql =
-                "UPDATE venta SET fecha=?, id_cliente=?, metodo_pago=?, total=? WHERE id_venta=?";
-
-        return jdbcTemplate.update(
-                sql,
-                v.getFecha(),
-                v.getIdCliente(),
-                v.getMetodoPago(),
-                v.getTotal(),
-                v.getId()
-        ) > 0;
+    public boolean actualizarVenta(Venta venta) {
+        String sql = "UPDATE venta SET fecha = ?, total = ?, metodo_pago = ?, id_cliente = ? WHERE id_venta = ?";
+        return jdbcTemplate.update(sql,
+                venta.getFecha(),
+                venta.getTotal(),
+                venta.getMetodoPago(),
+                venta.getIdCliente(),
+                venta.getIdVenta()) > 0;
     }
 
     // ===== Eliminar una venta =====
-    public boolean eliminar(int id) {
-        String sql = "DELETE FROM venta WHERE id_venta=?";
-
+    public boolean eliminarVenta(int id) {
+        String sql = "DELETE FROM venta WHERE id_venta = ?";
         return jdbcTemplate.update(sql, id) > 0;
     }
 
     // ===== Obtener una venta por ID =====
-    public Venta obtenerPorId(int id) {
-        String sql =
-                "SELECT v.id_venta, v.fecha, v.id_cliente, c.nombre AS nombre_cliente, " +
-                "v.metodo_pago, v.total " +
-                "FROM venta v " +
-                "INNER JOIN cliente c ON v.id_cliente = c.id_cliente " +
-                "WHERE v.id_venta=?";
-
-        return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    public Venta obtenerVentaPorId(int id) {
+        String sql = "SELECT * FROM venta WHERE id_venta = ?";
+        list<Venta> lista = jdbcTemplate.query(sql, rowMapper, id);
+        return lista.isEmpty() ? null : lista.get(0);
     }
 }

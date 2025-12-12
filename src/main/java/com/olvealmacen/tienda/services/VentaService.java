@@ -1,13 +1,11 @@
 package com.olvealmacen.tienda.services;
 
-import com.olvealmacen.tienda.dao.CategoriaDAO;
 import com.olvealmacen.tienda.dao.VentaDAO;
 import com.olvealmacen.tienda.modelo.Venta;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class VentaService {
@@ -21,26 +19,26 @@ public class VentaService {
 
     // Obtener todas las ventas
     public List<Venta> obtenerVentas() {
-        return ventaDAO.listar();
+        return ventaDAO.obtenerVentas();
     }
 
     // Obtener venta por ID
     public Venta obtenerVentaPorId(int id) {
-        return ventaDAO.obtenerPorId(id);
+        return ventaDAO.obtenerVentaPorId(id);
     }
 
     // Agregar venta
     public boolean agregarVenta(Venta venta) {
-        return ventaDAO.agregar(venta);
+        return ventaDAO.agregarVenta(venta);
     }
 
     // Actualizar venta
     public boolean actualizarVenta(Venta venta) {
-        return ventaDAO.actualizar(venta);
+        return ventaDAO.actualizarVenta(venta);
     }
 
     // Eliminar venta
     public boolean eliminarVenta(int id) {
-        return ventaDAO.eliminar(id);
+        return ventaDAO.eliminarVenta(id);
     }
 }

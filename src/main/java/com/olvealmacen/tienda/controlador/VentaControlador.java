@@ -21,22 +21,20 @@ public class VentaControlador {
         this.gson = new Gson();
     }
 
-    @GetMapping
-    public String listar() {
+    @GetMapping({"", "/listar"})
+    public String listarVentas() {
         List<Venta> lista = ventaService.obtenerVentas();
         return gson.toJson(lista);
     }
 
     @PostMapping
-    public String agregar(@RequestBody String body) {
-        Venta v = gson.fromJson(body, Venta.class);
+    public String insertar(@RequestBody Venta v) {
         boolean ok = ventaService.agregarVenta(v);
         return "{\"success\": " + ok + "}";
     }
 
     @PutMapping("/{id}")
-    public String actualizar(@PathVariable int id, @RequestBody String body) {
-        Venta v = gson.fromJson(body, Venta.class);
+    public String actualizar(@PathVariable int id, @RequestBody Venta v) {
         v.setId(id);
         boolean ok = ventaService.actualizarVenta(v);
         return "{\"success\": " + ok + "}";
