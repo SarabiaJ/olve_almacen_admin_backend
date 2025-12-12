@@ -35,7 +35,7 @@ public class VentaControlador {
 
     @PutMapping("/{id}")
     public String actualizar(@PathVariable int id, @RequestBody Venta v) {
-        v.setId(id);
+        v.setIdVenta(id);
         boolean ok = ventaService.actualizarVenta(v);
         return "{\"success\": " + ok + "}";
     }

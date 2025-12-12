@@ -62,7 +62,7 @@ public class VentaDAO {
     // ===== Obtener una venta por ID =====
     public Venta obtenerVentaPorId(int id) {
         String sql = "SELECT * FROM venta WHERE id_venta = ?";
-        list<Venta> lista = jdbcTemplate.query(sql, rowMapper, id);
+        List<Venta> lista = jdbcTemplate.query(sql, rowMapper, id);
         return lista.isEmpty() ? null : lista.get(0);
     }
 }
