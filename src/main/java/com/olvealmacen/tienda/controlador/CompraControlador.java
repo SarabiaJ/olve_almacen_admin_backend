@@ -13,38 +13,36 @@ import java.util.List;
 @RequestMapping("/api/compras")
 public class CompraControlador {
 
-    private final CompraService service;
+    private final CompraService compraService;
     private final Gson gson;
 
-    public CompraControlador(CompraService service) {
-        this.service = service;
+    public CompraControlador(CompraService compraService) {
+        this.compraService = compraService;
         this.gson = new Gson();
     }
 
-    @GetMapping
-    public String listar() {
-        List<Compra> lista = service.obtenerCompras();
+    @GetMapping({"", "/listar"})
+    public String listarCompras() {
+        List<Compra> lista = compraService.obtenerCompras();
         return gson.toJson(lista);
     }
 
     @PostMapping
-    public String agregar(@RequestBody String body) {
-        Compra c = gson.fromJson(body, Compra.class);
-        boolean ok = service.agregarCompra(c);
+    public String insertar(@RequestBody Compra c) {
+        boolean ok = compraService.agregarCompra(c);
         return "{\"success\": " + ok + "}";
     }
 
     @PutMapping("/{id}")
-    public String actualizar(@PathVariable int id, @RequestBody String body) {
-        Compra c = gson.fromJson(body, Compra.class);
+    public String actualizar(@PathVariable int id, @RequestBody Compra c) {
         c.setId(id);
-        boolean ok = service.actualizarCompra(c);
+        boolean ok = compraService.actualizarCompra(c);
         return "{\"success\": " + ok + "}";
     }
 
     @DeleteMapping("/{id}")
     public String eliminar(@PathVariable int id) {
-        boolean ok = service.eliminarCompra(id);
+        boolean ok = compraService.eliminarCompra(id);
         return "{\"success\": " + ok + "}";
     }
 }

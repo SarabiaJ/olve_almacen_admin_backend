@@ -1,12 +1,11 @@
 package com.olvealmacen.tienda.services;
 
-import com.olvealmacen.tienda.dao.CategoriaDAO;
 import com.olvealmacen.tienda.dao.CompraDAO;
 import com.olvealmacen.tienda.modelo.Compra;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CompraService {
@@ -19,22 +18,22 @@ public class CompraService {
     }
 
     public List<Compra> obtenerCompras() {
-        return compraDAO.listar();
+        return compraDAO.obtenerCompras();
     }
 
     public Compra obtenerCompraPorId(int id) {
-        return compraDAO.obtenerPorId(id);
+        return compraDAO.obtenerCompraPorId(id);
     }
 
     public boolean agregarCompra(Compra compra) {
-        return compraDAO.agregar(compra);
+        return compraDAO.agregarCompra(compra);
     }
 
     public boolean actualizarCompra(Compra compra) {
-        return compraDAO.actualizar(compra);
+        return compraDAO.actualizarCompra(compra);
     }
 
     public boolean eliminarCompra(int id) {
-        return compraDAO.eliminar(id);
+        return compraDAO.eliminarCompra(id);
     }
 }
